@@ -1,0 +1,12 @@
+{
+  "name": "leetcode_typescript.ws",
+  "version": "1.0.0",
+  "description": "Solve leetcode problems in typescript",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
