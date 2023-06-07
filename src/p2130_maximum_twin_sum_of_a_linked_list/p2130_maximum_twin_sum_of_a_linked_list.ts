@@ -1,5 +1,4 @@
 // Definition for singly-linked list.
-//
 class ListNode {
     val: number
     next: ListNode | null
@@ -20,51 +19,31 @@ export function vecToList(vec: number[]): ListNode | null {
 }
 
 export function pairSum(head: ListNode | null): number {
-  let list1: ListNode | null = new ListNode(0)
-  list1.next = head
-  let slow: ListNode | null = head
-  let fast: ListNode | null = head
-  let prev = slow
+  let [slow, fast] = [head, head]
+  let maxVal = 0
 
-  while (fast != null && fast.next != null) {
-    prev = slow
-    slow = slow != null ? slow.next : slow
+  // get middle of linked list
+  while (fast != null && fast.next != null && slow != null) {
+    slow = slow.next
     fast = fast.next.next
   }
 
-  slow = slow != null ? slow : new ListNode(-1)
-  prev = prev != null ? prev : new ListNode(-1)
-  if (slow.next == null && fast == null) {
-    return prev.val + slow.val
+  // reverse second part of linked list
+  let curr = slow
+  let prev = null
+  while (curr != null) {
+    let next = curr.next
+    curr.next = prev
+    prev = curr
+    curr = next
   }
 
-  //invert list 2
-
-  let list2: ListNode | null = new ListNode(0)
-  list2.next = slow
-  prev = prev != null ? prev : new ListNode(-1)
-  prev.next = null
-  let prevInv: ListNode | null = list2
-  let currInv: ListNode | null = list2.next
-
-  while (currInv != null) {
-    let next: ListNode | null = currInv.next
-    currInv.next = prevInv
-    prevInv = currInv
-    currInv = next
+  // get max sum of pairs
+  while (prev != null && head != null) {
+    maxVal = Math.max(maxVal, prev.val + head.val)
+    head = head.next
+    prev = prev.next
   }
 
-  let tail = list2.next
-  tail.next = null
-  list2.next = prevInv
-
-  let result = 0
-
-  while (list1 != null && list2 != null) {
-    result = Math.max(result, list1.val + list2.val)
-    list1 = list1.next
-    list2 = list2.next
-  }
-
-  return result
+  return maxVal
 };
