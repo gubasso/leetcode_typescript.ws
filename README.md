@@ -3,5 +3,5 @@
 run test command:
 
 ```
-npm test src/p2130_maximum_twin_sum_of_a_linked_list -- --silent=false
+npm test src/p92_reverse_linked_list_ii -- --silent=false
 ```
