@@ -17,15 +17,18 @@ export function vecToBinaryTree(vec: (number | null)[], j?: number): TreeNode | 
 }
 
 export function hasPathSum(root: TreeNode | null, targetSum: number): boolean {
-  function dfs(root: TreeNode | null, curr: number): boolean {
-    if (!root) return false;
-    let node: TreeNode = root as TreeNode;
-    curr += node.val
-    if (node.left == null && node.right == null) return curr == targetSum
-    let left = dfs(node.left, curr)
-    let right = dfs(node.right, curr)
-    return left || right
+  if (!root) return false;
+  let node: TreeNode = root as TreeNode;
+  let stack: TreeNode[] = [node]
+  let curr = 0
+
+  while (stack.length > 0) {
+    let n = stack.pop() as TreeNode
+    curr += n.val
+    if (curr == targetSum) return true
+    if (n?.left) stack.push(n.left)
+    if (n?.right) stack.push(n.right)
   }
 
-  return dfs(root, 0)
+  return false
 };
