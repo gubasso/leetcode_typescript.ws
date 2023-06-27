@@ -2,6 +2,27 @@
 
 ## Iterative Approach
 
+```typescript
+function hasPathSum(root: TreeNode | null, targetSum: number): boolean {
+  if (!root) return false;
+  let node: TreeNode = root as TreeNode;
+  let stack: [TreeNode, number][] = [[node, 0]]
+
+  while (stack.length > 0) {
+    let [n, curr] = stack.pop() as [TreeNode, number]
+    curr += n.val
+    if (!n.left && !n.right) {
+      if (curr == targetSum) return true
+    }
+    if (n?.left) stack.push([n.left, curr])
+    if (n?.right) stack.push([n.right, curr])
+  }
+
+  return false
+};
+
+```
+
 ## Recursive approach
 
 ```typescript

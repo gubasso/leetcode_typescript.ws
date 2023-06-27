@@ -15,4 +15,10 @@ describe('p112_path_sum', () => {
     expect(hasPathSum(tree, 22)).toBe(true)
   });
 
+  test('t2', () => {
+    let input = [1,2]
+    let tree = vecToBinaryTree(input)
+    expect(hasPathSum(tree, 1)).toBe(false)
+  });
+
 });

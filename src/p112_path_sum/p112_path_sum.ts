@@ -19,15 +19,16 @@ export function vecToBinaryTree(vec: (number | null)[], j?: number): TreeNode | 
 export function hasPathSum(root: TreeNode | null, targetSum: number): boolean {
   if (!root) return false;
   let node: TreeNode = root as TreeNode;
-  let stack: TreeNode[] = [node]
-  let curr = 0
+  let stack: [TreeNode, number][] = [[node, 0]]
 
   while (stack.length > 0) {
-    let n = stack.pop() as TreeNode
+    let [n, curr] = stack.pop() as [TreeNode, number]
     curr += n.val
-    if (curr == targetSum) return true
-    if (n?.left) stack.push(n.left)
-    if (n?.right) stack.push(n.right)
+    if (!n.left && !n.right) {
+      if (curr == targetSum) return true
+    }
+    if (n?.left) stack.push([n.left, curr])
+    if (n?.right) stack.push([n.right, curr])
   }
 
   return false
