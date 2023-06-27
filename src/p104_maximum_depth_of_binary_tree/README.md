@@ -1,6 +1,6 @@
 # p104_maximum_depth_of_binary_tree
 
-## Iteractive approach
+## Iterative approach
 
 ```
 function maxDepth(root: TreeNode | null): number {
