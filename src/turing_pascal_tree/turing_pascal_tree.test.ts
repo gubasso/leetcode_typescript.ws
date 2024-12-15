@@ -1,43 +1,18 @@
 import {describe, expect, test} from '@jest/globals';
-import { vecToBinaryTree, vecToBinaryTreeIter, isSameTree } from './p100_same_tree';
+import { row } from './turing_pascal_tree';
 
-describe('p100_same_tree', () => {
-
-  test('utils', () => {
-    let input = [3,1,4,3,null,1,5]
-    let input2 = [3,3,null,4,2]
-    let tree = vecToBinaryTree(input)
-    let tree2 = vecToBinaryTree(input2)
-    let treeIter = vecToBinaryTreeIter(input)
-    let tree2Iter = vecToBinaryTreeIter(input2)
-    // console.log(tree)
-    // console.log(treeIter)
-    // console.log(tree2)
-    // console.log(tree2Iter)
-  });
+describe('turing_pascal_tree', () => {
 
   test('t1', () => {
-    let p = [1,2,3]
-    let q = [1,2,3]
-    let pl = vecToBinaryTree(p)
-    let ql = vecToBinaryTree(q)
-    expect(isSameTree(pl, ql)).toBe(true)
-  });
+    expect(row(0)).toStrictEqual([1])
+  })
 
   test('t2', () => {
-    let p = [1,2]
-    let q = [1,null,2]
-    let pl = vecToBinaryTree(p)
-    let ql = vecToBinaryTree(q)
-    expect(isSameTree(pl, ql)).toBe(false)
-  });
+    expect(row(1)).toStrictEqual([1,1])
+  })
 
   test('t3', () => {
-    let p = [1,2,1]
-    let q = [1,1,2]
-    let pl = vecToBinaryTree(p)
-    let ql = vecToBinaryTree(q)
-    expect(isSameTree(pl, ql)).toBe(false)
-  });
+    expect(row(3)).toStrictEqual([1,3,3,1])
+  })
 
 });
